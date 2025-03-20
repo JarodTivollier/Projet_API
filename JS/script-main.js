@@ -9,7 +9,7 @@ const options = {
 const divFilms = document.getElementById('films');
 
 /**
- * Récupérer la liste de films à afficher
+ * Récupérer une liste de films
  * @returns une liste de film
  */
 async function recupFilms() {
@@ -20,6 +20,25 @@ async function recupFilms() {
     const movies = resJSON.results;
     // console.log(movies);
     return movies;
+  }  else {
+    // Sinon on affiche l'erreur
+    console.error(resObj);
+  }
+}
+
+/**
+ * Récupérer un film
+ * @param {*} idMovie
+ * @returns un film
+ */
+async function recupFilm(idMovie) {
+  const url = 'https://api.themoviedb.org/3/movie/' + idMovie + '/credits?language=en-US'
+  let resObj = await fetch(url, options);
+  if (resObj.ok) {
+    // Si le résultat semble valide (Statut HTTP entre 200 et 299)
+    const movie = await resObj.json();
+    // console.log(movies);
+    return movie;
   }  else {
     // Sinon on affiche l'erreur
     console.error(resObj);
@@ -48,7 +67,7 @@ async function recupActeurs(idMovie) {
 /**
  * Afficher une liste de films
  */
-async function afficheFilm() {
+async function afficheFilms() {
     const movies = await recupFilms();
     // Affichage
     for (let i = 0; i < movies.length; i++) {
@@ -57,75 +76,8 @@ async function afficheFilm() {
       if (resObj.ok) {
         // Si le résultat semble valide (Statut HTTP entre 200 et 299)
         const movie = await resObj.json();
-         console.log(movie);
-        if (movie.poster_path != null) {
-          // --- Affiche du film
-          let afficheFilm = document.createElement('img');
-          afficheFilm.src = 'https://media.themoviedb.org/t/p/w220_and_h330_face' + movie.poster_path;
-        
-          // --- Info
-          let info = document.createElement('div');
-          info.className = 'infoFilm';
-          // Titre
-          let titre = document.createElement('h2');
-          titre.textContent = movie.title;
-          info.append(titre);
-          // Sous-titre
-          if (movie.tagline != "") {
-            let sousTitre = document.createElement('p');
-            sousTitre.className = "sousTitre";
-            sousTitre.textContent = movie.tagline;
-            info.append(sousTitre);
-          }
-          // Date
-          let date = document.createElement('p');
-          date.textContent = movie.release_date;
-          info.append(date);
-          // Genre
-          let genre = document.createElement('p');
-          let txtGenre = "";
-          for (let i = 0; i < movie.genres.length; i++) {
-              if (i == 0) {
-                txtGenre += movie.genres[i].name;
-              } else {
-                txtGenre += ", " + movie.genres[i].name;
-              } 
-          }
-          genre.textContent = txtGenre;
-          info.append(genre);
-          // --- Durée
-          let duree = document.createElement('p');
-          let heures = Math.floor(movie.runtime / 60);
-          let minutes = movie.runtime % 60;
-          duree.textContent = heures + "h" + minutes;
-          info.append(duree);
-          // --- Acteurs (les 3 premiers)
-          let acteurs = document.createElement('p');
-          const actors = await recupActeurs(movie.id);
-          let txtActeurs = "With ";
-          let i = 0
-          while (i < actors.length && i < 3) {
-              if (i == 0) {
-                txtActeurs += actors[i].name;
-              } else {
-                txtActeurs += ", " + actors[i].name;
-              } 
-              i++;
-          }
-          if (actors.length > 3) {
-            txtActeurs += ", and more";
-          }
-          acteurs.textContent = txtActeurs;
-          info.append(acteurs);
-          
-          // --- Div du film
-          let newDiv = document.createElement('div');
-          newDiv.className = 'film';
-          newDiv.append(afficheFilm);
-          newDiv.append(info);
-        
-          divFilms.append(newDiv);
-        }
+        // console.log(movie);
+        afficheFilm(movie);
       }  else {
         // Sinon on affiche l'erreur
         console.error(resObj);
@@ -133,4 +85,79 @@ async function afficheFilm() {
     }
 }
 
-afficheFilm();
+/**
+ * Afficher un film
+ * @param {} movie 
+ */
+async function afficheFilm(movie) {
+  if (movie.poster_path != null) {
+    // --- Affiche du film
+    let afficheFilm = document.createElement('img');
+    afficheFilm.src = 'https://media.themoviedb.org/t/p/w220_and_h330_face' + movie.poster_path;
+  
+    // --- Info
+    let info = document.createElement('div');
+    info.className = 'infoFilm';
+    // Titre
+    let titre = document.createElement('h2');
+    titre.textContent = movie.title;
+    info.append(titre);
+    // Sous-titre
+    if (movie.tagline != "") {
+      let sousTitre = document.createElement('p');
+      sousTitre.className = "sousTitre";
+      sousTitre.textContent = movie.tagline;
+      info.append(sousTitre);
+    }
+    // Date
+    let date = document.createElement('p');
+    date.textContent = movie.release_date;
+    info.append(date);
+    // Genre
+    let genre = document.createElement('p');
+    let txtGenre = "";
+    for (let i = 0; i < movie.genres.length; i++) {
+        if (i == 0) {
+          txtGenre += movie.genres[i].name;
+        } else {
+          txtGenre += ", " + movie.genres[i].name;
+        } 
+    }
+    genre.textContent = txtGenre;
+    info.append(genre);
+    // --- Durée
+    let duree = document.createElement('p');
+    let heures = Math.floor(movie.runtime / 60);
+    let minutes = movie.runtime % 60;
+    duree.textContent = heures + "h" + minutes;
+    info.append(duree);
+    // --- Acteurs (les 3 premiers)
+    let acteurs = document.createElement('p');
+    const actors = await recupActeurs(movie.id);
+    let txtActeurs = "With ";
+    let i = 0
+    while (i < actors.length && i < 3) {
+        if (i == 0) {
+          txtActeurs += actors[i].name;
+        } else {
+          txtActeurs += ", " + actors[i].name;
+        } 
+        i++;
+    }
+    if (actors.length > 3) {
+      txtActeurs += ", and more";
+    }
+    acteurs.textContent = txtActeurs;
+    info.append(acteurs);
+    
+    // --- Div du film
+    let newDiv = document.createElement('div');
+    newDiv.className = 'film';
+    newDiv.append(afficheFilm);
+    newDiv.append(info);
+  
+    divFilms.append(newDiv);
+  }
+}
+
+afficheFilms();
