@@ -95,3 +95,18 @@ button {
     margin-top: 0%;
 }
 
+#films .favoris {
+    background-color: white;
+    width: 5vh;
+    height: 5vh;
+    padding: 1vh;
+    border-radius: 50%;
+    position: absolute;
+    left: 1vh;
+    top: 1vh;
+}
+
+#films .favoris img {
+    width: 3vh;
+}
+

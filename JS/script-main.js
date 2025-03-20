@@ -125,20 +125,20 @@ async function afficheFilm(movie) {
     }
     genre.textContent = txtGenre;
     info.append(genre);
-    // --- Durée
+    // Durée
     let duree = document.createElement('p');
     let heures = Math.floor(movie.runtime / 60);
     let minutes = movie.runtime % 60;
     duree.textContent = heures + "h" + minutes;
     info.append(duree);
-    // --- Acteurs (les 3 premiers)
+    // Acteurs (les 3 premiers)
     let acteurs = document.createElement('p');
     const actors = await recupActeurs(movie.id);
-    let txtActeurs = "With ";
+    let txtActeurs = "";
     let i = 0
     while (i < actors.length && i < 3) {
         if (i == 0) {
-          txtActeurs += actors[i].name;
+          txtActeurs += "With " + actors[i].name;
         } else {
           txtActeurs += ", " + actors[i].name;
         } 
@@ -149,12 +149,21 @@ async function afficheFilm(movie) {
     }
     acteurs.textContent = txtActeurs;
     info.append(acteurs);
+
+    // --- Favoris
+    let favoris = document.createElement('button');
+    favoris.className = 'favoris';
+    favoris.name = 'favoris';
+    let imgCoeur = document.createElement('img');
+    imgCoeur.src = 'css/images/coeur-noir.png';
+    favoris.append(imgCoeur);
     
     // --- Div du film
     let newDiv = document.createElement('div');
     newDiv.className = 'film';
     newDiv.append(afficheFilm);
     newDiv.append(info);
+    newDiv.append(favoris);
   
     divFilms.append(newDiv);
   }
