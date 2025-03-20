@@ -13,6 +13,7 @@ body {
 h1 {
     font-size: 300%;
 }
+
 button {
     background-color: red;
     padding: 1%;
@@ -21,3 +22,39 @@ button {
     border: transparent;
     border-radius: 5px;
 }
+
+/* -------- Films -------- */
+#films {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2%;
+}
+
+#films .film {
+    display: flex;
+    height: 330px;
+    margin: 0.5%;
+    position: relative;
+}
+
+#films .infoFilm {
+    background-color: black;
+    width: 220px;
+    height: 330px;
+    position: absolute;
+    opacity: 0;
+}
+
+#films .film:hover .infoFilm {
+    opacity: 1;
+    padding-left: 1.5%;
+    padding-right: 1.5%;
+    width: 250px;
+    left: 100%;
+    transition: .5s ease-in-out;
+}
+
+#films .film:hover {
+    margin-right: 250px;
+}
+
