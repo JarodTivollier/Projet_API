@@ -15,46 +15,73 @@ h1 {
 }
 
 button {
+    width: 20vh;
+    height: 7vh;
     background-color: red;
-    padding: 1%;
     color: white;
     font-size: large;
     border: transparent;
-    border-radius: 5px;
+    border-radius: 2vh;
+    cursor: pointer;
+}
+
+#filmsEtListe {
+    display: flex;
+}
+
+/* -------- Liste -------- */
+#listeFilms {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
 }
 
 /* -------- Films -------- */
 #films {
     display: flex;
     flex-wrap: wrap;
-    gap: 2%;
+    gap: 1vh;
 }
 
 #films .film {
     display: flex;
-    height: 330px;
+    height: 35vh;
     margin: 0.5%;
     position: relative;
 }
 
+#films img {
+    cursor: pointer;
+}
+
 #films .infoFilm {
     background-color: black;
-    width: 220px;
-    height: 330px;
+    width: 25vh;
+    height: 35vh;
     position: absolute;
     opacity: 0;
+    border-radius: 0vh 3vh 3vh 0vh;
 }
 
 #films .film:hover .infoFilm {
     opacity: 1;
     padding-left: 1.5%;
     padding-right: 1.5%;
-    width: 250px;
+    width: 25vh;
     left: 100%;
     transition: .5s ease-in-out;
 }
 
 #films .film:hover {
-    margin-right: 250px;
+    margin-right: 25vh;
+}
+
+#films h2 {
+    margin-bottom: 0%;
+}
+
+#films .sousTitre {
+    font-size: 85%;
+    margin-top: 0%;
 }
 
