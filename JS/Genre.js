@@ -1,0 +1,1 @@
+const listGenres = document.getElementById("genres");
