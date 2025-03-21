@@ -8,15 +8,13 @@ export const view = {
     btnAffichageFav: document.getElementById('btnAfficheFavoris'),
     // Menu déroulant des genres
     listGenres:  document.getElementById('genres'),
-    // Titre
-    titre: document.getElementById('titre'),
-    // Date
-    date: document.getElementById('date'),
-    // Durée max
-    dureeMax: document.getElementById('dureeMax'),
-    // Durée min
-    dureeMin: document.getElementById('dureeMin'),
-
+    // Keywords
+    keywords: document.getElementById('keywords'),
+    // Date Min
+    dateMin: document.getElementById('dateMin'),
+    // Date Max
+    dateMax: document.getElementById('dateMax'),
+ 
     recherche: document.getElementById('btn-submit'),
     // Boutons des favoris
     favoris: document.getElementsByName('favoris'),
