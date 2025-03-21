@@ -32,7 +32,7 @@ async function recupFilms() {
  * @returns un film
  */
 async function recupFilm(idMovie) {
-  const url = 'https://api.themoviedb.org/3/movie/' + idMovie + '/credits?language=en-US'
+  const url = 'https://api.themoviedb.org/3/movie/' + idMovie + '/credits?language=en-US';
   let resObj = await fetch(url, options);
   if (resObj.ok) {
     // Si le résultat semble valide (Statut HTTP entre 200 et 299)
@@ -84,6 +84,7 @@ async function afficheFilms() {
       }
     }
 }
+
 
 /**
  * Afficher un film
