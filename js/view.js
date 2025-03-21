@@ -15,6 +15,7 @@ export const view = {
     // Durée min
     dureeMin: document.getElementById('dureeMin'),
 
-    recherche: document.getElementById('btn-submit')
-
+    recherche: document.getElementById('btn-submit'),
+    // Boutons des favoris
+    favoris: document.getElementsByName('favoris')
   };

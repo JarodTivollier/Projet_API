@@ -158,6 +158,9 @@ async function afficheFilm(movie) {
     let imgCoeur = document.createElement('img');
     imgCoeur.src = 'css/images/coeur-noir.png';
     favoris.append(imgCoeur);
+    favoris.addEventListener('click', () => {
+      favoris.firstElementChild.src = 'css/images/coeur-rouge.png';
+    });
     
     // --- Div du film
     let newDiv = document.createElement('div');

@@ -1,0 +1,28 @@
+{
+  "name": "projet_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha --loader ts-node/esm"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JarodTivollier/Projet_API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/JarodTivollier/Projet_API/issues"
+  },
+  "homepage": "https://github.com/JarodTivollier/Projet_API#readme",
+  "devDependencies": {
+    "mocha": "^11.1.0",
+    "ts-node": "^10.9.2"
+  }
+}
