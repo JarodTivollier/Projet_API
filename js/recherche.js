@@ -6,7 +6,7 @@ const options = {
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1YjM0Yjc1MTQ4MzFjZGI5ODA3MTNiM2MyNmE1OWY1YiIsIm5iZiI6MTc0MTk2Mjc5Mi4zNzIsInN1YiI6IjY3ZDQzZTI4ZWM0ZWJkMjhhMjUzYzQ5NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.VXfTdMN68v_vGud1nkMQ8fNqw9ZNnL7-OnbaE7GJr2A'
     }
   };
-  let genreId = '28';  
+let genreId = '12';  
 
 
 async function afficheGenre(){
@@ -76,7 +76,6 @@ async function afficheGenre(){
 async function recherche() {
     try {
           
-        const genre = genreId || '';
         const dateMin = view.dateMin.value || '';
         const dateMax = view.dateMax.value || '';
         console.log(dateMin);
@@ -89,8 +88,8 @@ async function recherche() {
         let url = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc';
         console.log(url);
         // Ajouter les paramètres de dates uniquement si les valeurs sont présentes
-        if (genre){
-            url+=  '&with_genres=' + genre; 
+        if (genreId){
+            url+=  '&with_genres=' + genreId; 
         }
         if (keywords){
             url += '&with_keywords=' + keywords;
@@ -106,7 +105,7 @@ async function recherche() {
         // Log de l'URL pour débogage
         console.log('URL construite :', url);
 
-        let resObj = await fetch(url, options);
+       let resObj = await fetch(url, options);
 
         if (resObj.ok) {
             const resJSON = await resObj.json();
