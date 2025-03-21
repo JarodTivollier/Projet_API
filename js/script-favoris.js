@@ -1,12 +1,12 @@
-// Récupération des favoris 
-let favoris = document.getElementsByName('favoris');
-console.log(favoris);
-console.log(favoris.length);
+import { view } from './view.js';
 
-// Ajout d'un événement au click
-favoris.forEach(favori => {
-    console.log(favori);
-    favori.addEventListener('click', () => {
-        favori.firstElementChild.src = 'css/images/coeur-rouge.png';
-    })
-});
+// Récupération des favoris 
+console.log(view.favoris);
+
+// // Ajout d'un événement au click
+// favoris.forEach(favori => {
+//     console.log(favori);
+//     favori.addEventListener('click', () => {
+//         favori.firstElementChild.src = 'css/images/coeur-rouge.png';
+//     })
+// });
