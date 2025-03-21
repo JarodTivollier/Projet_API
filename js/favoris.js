@@ -23,6 +23,10 @@ export class Favoris {
     getList() {
       return this._listFavoris;
     }
+
+    isInList(favoris) {
+      return this._listFavoris.includes(favoris);
+    }
   
     save() {
       this.localStorage.setItem("listFavoris", JSON.stringify(this._listFavoris));
