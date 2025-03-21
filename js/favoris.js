@@ -1,50 +1,56 @@
 export class Favoris {
-
     /**
      * Liste de favoris
      * @type {Array}
      */
-    _listFavoris
-
+    _listFavoris;
+  
+    /**
+     * Instance de localStorage
+     * @type {Storage}
+     */
+    localStorage;
+  
     /**
      * Constructeur de la classe Favoris.
+     * @param {Storage} [localStorage=window.localStorage] - instance de localStorage à utiliser 
      */
-    constructor() {}
-
+    constructor(localStorage = window.localStorage) {
+      this.localStorage = localStorage;
+      this.retrieve(); // Charger les favoris au moment de l'instanciation
+    }
+  
     getList() {
-        return this._listFavoris;
+      return this._listFavoris;
     }
-
+  
     save() {
-        localStorage.setItem("listFavoris", JSON.stringify(this._listFavoris));
+      this.localStorage.setItem("listFavoris", JSON.stringify(this._listFavoris));
     }
-
+  
     retrieve() {
-        let favorisJSONSL = localStorage.getItem("listFavoris");
-        if(favorisJSONSL) {
-            this._listFavoris = JSON.parse(btnJSONSL);
-        } else {
-            this._listFavoris = [];
-        }
+      let favorisJSONSL = this.localStorage.getItem("listFavoris");
+      if (favorisJSONSL) {
+        this._listFavoris = JSON.parse(favorisJSONSL);
+      } else {
+        this._listFavoris = [];
+      }
     }
-
+  
     add(newFavoris) {
-        this.retrieve();
-        if (!this._listFavoris.includes(newFavoris)) {
-            console.log('Le favoris vient d\'être ajouté !')
-            this._listFavoris.push(newFavoris);
-        }
-        this.save();
+      if (!this._listFavoris.includes(newFavoris)) {
+        console.log('Le favoris vient d\'être ajouté !')
+        this._listFavoris.push(newFavoris);
+      }
+      this.save();
     }
-
+  
     remove(oldFavoris) {
-        this.retrieve();
-        if (!this._listFavoris.includes(oldFavoris)) {
-            let indice = this._listFavoris.indexOf(oldFavoris);
-            this._listFavoris.splice(indice, 1);
-        }
-        this.save();
+      let indice = this._listFavoris.indexOf(oldFavoris);
+      if (indice !== -1) {
+        this._listFavoris.splice(indice, 1);
+      }
+      this.save();
     }
-
-
-}
+  }
+  
