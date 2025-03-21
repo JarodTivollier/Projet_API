@@ -1,5 +1,5 @@
-const assert = require('assert');
-const Favoris = require('../js/favoris.js');
+import assert from 'assert';
+import { Favoris } from '../js/favoris.js';
 
 describe('Favoris', function () {
   describe('#add()', function () {
@@ -9,11 +9,11 @@ describe('Favoris', function () {
       let idMovie = '1234';
       favoris.add(idMovie);
 
+      // On récupère la liste depuis localStorage
       let ls = JSON.parse(localStorage.getItem('listFavoris'));
 
-      assert.equal(favoris, ls);
+      // On vérifie si l'élément a bien été ajouté à la liste
+      assert.ok(ls.includes(idMovie), 'Le film n\'a pas été ajouté à la liste.');
     });
-
-    
   });
 });

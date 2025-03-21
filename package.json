@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha --loader ts-node/esm"
+    "test": "mocha -r ts-node/register"
   },
   "repository": {
     "type": "git",
