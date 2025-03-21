@@ -96,9 +96,7 @@ export const view = {
         }
         favoris.append(imgCoeur);
         favoris.addEventListener('click', () => {
-          console.log('je suis là')
           if (favoris.firstElementChild.src.includes('coeur-noir.png')) {
-            console.log('ici')
             listeFavoris.add(movie.id);
             favoris.firstElementChild.src = 'css/images/coeur-rouge.png';
           } else {
