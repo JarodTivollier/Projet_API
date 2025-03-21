@@ -21,4 +21,21 @@ describe('Favoris', function () {
       assert.ok(ls.includes(idMovie), 'Le film n\'a pas été ajouté à la liste.');
     });
   });
+
+  describe('#remove()', function () {
+    it('should remove the id to the list', function () {
+      // Passez localStorage simulé dans le constructeur de Favoris
+      let favoris = new Favoris(localStorage);
+
+      let idMovie = '1234';
+      favoris.add(idMovie);
+      favoris.remove(idMovie);
+
+      // On récupère la liste depuis localStorage simulé
+      let ls = JSON.parse(localStorage.getItem('listFavoris'));
+
+      // On vérifie si l'élément a bien été ajouté à la liste
+      assert.ok(!ls.includes(idMovie), 'Le film n\'a pas été ajouté à la liste.');
+    });
+  });
 });
