@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Titre de la page</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="Genre.js"></script>
+</head>
+<body>
+    <h1> What are we watching tonight ? </h1>
+    <form>
+        <label for="genres">Genres:</label>
+        <select id="genres">
+          <!-- TODO: affichage des genres -->
+        </select>
+        <label for="date">Realease date:</label>
+        <input type="number" id="dateMin" placeholder="2025">
+        <input type="number" id="dateMax" placeholder="2025">
+        <label for="dureeMax">Runtime:</label>
+        
+        <button type="submit" id="btn-submit"> Rechercher </button>
+    </form>
+</body>
+  <script type="module" src="js/recherche.js"></script>
+</html>
