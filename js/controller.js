@@ -10,21 +10,35 @@ let apiMovie = new APIMovie;
 if (localStorage.getItem("searchMoviesId")) {
   // Display the result of the search
   console.log('je cherche...');
+  displayDefault();
 } else {
   // Display the default movies
-  const movies = await apiMovie.getMovies();
-  movies.forEach(async movie => {
-    preDisplay(movie.id);
-  });
+  displayDefault();
 }
 
-// Display the favorites movies
+// Button random search
+view.btnRandomSearch.addEventListener('click', () => {
+  displayDefault();
+})
+
+// Button display favorites
 view.btnDisplayFavorite.addEventListener('click', () => {
   view.moviesDiv.innerHTML = '';
   listFavorites.getList().forEach(async favorite => {
     preDisplay(favorite);
   });
 });
+
+/**
+ * Display the default list of movies
+ */
+async function displayDefault() {
+  view.moviesDiv.innerHTML = '';
+  const movies = await apiMovie.getMovies();
+  movies.forEach(async movie => {
+    preDisplay(movie.id);
+  });
+}
 
 /**
  * Recover the movie's information to display it

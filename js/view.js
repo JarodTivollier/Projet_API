@@ -9,6 +9,8 @@ export const view = {
     btnFavorite: document.getElementsByName('favorite'),
     // Button to display the favorites
     btnDisplayFavorite: document.getElementById('btnDisplayFavorite'),
+    // Button to display the random search
+    btnRandomSearch: document.getElementById('btnRandomSearch'),
 
     /* ----------- Search Page ---------- */
     // Menu déroulant des genres
