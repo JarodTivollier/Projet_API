@@ -1,3 +1,4 @@
+// 
 const options = {
     method: 'GET',
     headers: {
@@ -9,60 +10,60 @@ const options = {
 export class APIMovie {
     constructor() {}
 
-    /* ------------------------ Récupération ------------------------ */
+    /* ------------------------ Getters ------------------------ */
     /**
-     * Récupérer une liste de films
-     * @returns une liste de film
+     * Get a list of movies
+     * @returns a list of movies
      */
-    async recupFilms() {
-        let resObj = await fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=EN6us&page=1&sort_by=popularity.desc', options);
+    async getMovies() {
+        let resObj = await fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=EN6us&page=1&sort_by=popularity.desc&with_runtime.gte=60', options);
         if (resObj.ok) {
-            // Si le résultat semble valide (Statut HTTP entre 200 et 299)
+            // If the result is OK (Status HTTP between 200 and 299)
             const resJSON = await resObj.json();
             const movies = resJSON.results;
             // console.log(movies);
             return movies;
         }  else {
-            // Sinon on affiche l'erreur
+            // Else we display the error
             console.error(resObj);
         }
     }
 
     /**
-     * Récupérer un film
+     * Get one movie
      * @param {*} idMovie
-     * @returns un film
+     * @returns a movie
      */
-    async recupFilm(idMovie) {
+    async getMovie(idMovie) {
         const url = 'https://api.themoviedb.org/3/movie/' + idMovie + '?language=en-US';
         let resObj = await fetch(url, options);
         if (resObj.ok) {
-            // Si le résultat semble valide (Statut HTTP entre 200 et 299)
+            // If the result is OK (Status HTTP between 200 and 299)
             const movie = await resObj.json();
-            // console.log(movies);
+            // console.log(movie);
             return movie;
         }  else {
-            // Sinon on affiche l'erreur
+            // Else we display the error
             console.error(resObj);
         }
     }
 
     /**
-     * Récupérer les acteurs d'un film qui se trouvent dans les crédits de ce-dernier
+     * Get the actors of a movie located in its credits
      * @param {*} idMovie
-     * @returns la liste des acteurs 
+     * @returns the actor's list 
      */
-    async recupActeurs(idMovie) {
+    async getActors(idMovie) {
         const url = 'https://api.themoviedb.org/3/movie/' + idMovie + '/credits?language=en-US';
         let resObj = await fetch(url, options);
         if (resObj.ok) {
-        // Si le résultat semble valide (Statut HTTP entre 200 et 299)
-        const actors = await resObj.json();
-        //console.log(actors.cast);
-        return actors.cast;
+            // If the result is OK (Status HTTP between 200 and 299)
+            const actors = await resObj.json();
+            //console.log(actors.cast);
+            return actors.cast;
         }  else {
-        // Sinon on affiche l'erreur
-        console.error(resObj);
+            // Else we display the error
+            console.error(resObj);
         }
     }
 }

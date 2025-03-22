@@ -1,9 +1,5 @@
-body {
-    background-color: rgb(58, 57, 57);
-    color: whitesmoke;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
 
+/* --- General --- */
 #header {
     display: flex;
     flex-direction: column;
@@ -32,87 +28,96 @@ a {
     align-content: center;
 }
 
-#filmsEtListe {
+#movieAndList {
     display: flex;
     justify-content: center;
     gap: 5.5vh;
 }
 
-/* -------- Liste -------- */
-#listeFilms {
+/* -------- Lists -------- */
+#lists {
     display: flex;
     flex-direction: column;
-    gap: 2vh;
+    gap: 1vh;
 }
 
 /* -------- Films -------- */
-#films {
+#movies {
     display: flex;
     flex-wrap: wrap;
+    flex-grow: 1;
     gap: 6vh;
 }
 
-#films .film {
+#movies .movie {
     display: flex;
-    height: 35vh;
-    margin: 1.5vh;
+    height: 39vh;
     margin-top: 0;
     position: relative;
-}
-
-#films img {
     cursor: pointer;
+    border: 1vh ridge red;
 }
 
-#films .infoFilm {
+#movies img {
+    width: 27vh;
+}
+
+/* --- Movies' Info --- */
+#movies .movieInfo {
     background-color: black;
-    width: 25vh;
-    height: 35vh;
+    width: 20.4vh;
+    height: 35.4vh;
+    bottom: 0%;
+    right: 0%;
+    padding-left: 1vh;
+    padding-right: 2vh;
     position: absolute;
     opacity: 0;
-    border-radius: 0vh 3vh 3vh 0vh;
+    border-radius: 3vh 0vh 0vh 0vh;
+    transition: .5s ease-in-out;
+    overflow: auto;
 }
 
-#films .film:hover .infoFilm {
+#movies .movie:hover .movieInfo {
     opacity: 1;
-    padding-left: 1vh;
-    padding-right: 1vh;
-    width: 25vh;
-    left: 100%;
     transition: .5s ease-in-out;
 }
 
-#films .film:hover {
-    margin-right: 25vh;
+#movies .movie:hover > img {
+    filter: blur(2px);
 }
 
-#films h2 {
+#movies .movie:hover .favorite {
+    filter: blur(0px);
+}
+
+#movies h2 {
     margin-bottom: 0%;
     margin-top: 1vh;
     font-size: 3vh;
 }
 
-#films p {
+#movies p {
     font-size: 1.75vh;
 }
 
-#films .sousTitre {
+#movies .subTitle {
     font-size: 1.5vh;
     margin-top: 0%;
 }
 
-#films .favoris {
+/* --- Favorite's Button --- */
+#movies .favorite {
     background-color: white;
     width: 5vh;
     height: 5vh;
     padding: 1vh;
     border-radius: 50%;
     position: absolute;
-    left: 1vh;
-    top: 1vh;
+    left: 0.5vh;
+    top: 0.5vh;
 }
 
-#films .favoris img {
+#movies .favorite img {
     width: 3vh;
 }
-

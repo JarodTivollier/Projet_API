@@ -1,34 +1,37 @@
 import { view } from './view.js';
-import { Favoris } from './favoris.js';
+import { Favorite } from './favorite.js';
 import { APIMovie } from './movie.js';
 
 
-let listeFavoris = new Favoris;
+let listFavorites = new Favorite;
 let apiMovie = new APIMovie;
 
-// Affichage par défaut de la page
+// Search what is going to be displayed
 if (localStorage.getItem("searchMoviesId")) {
-  console.log('je cherche');
+  // Display the result of the search
+  console.log('je cherche...');
 } else {
-  // Affichage des films
-  const movies = await apiMovie.recupFilms();
+  // Display the default movies
+  const movies = await apiMovie.getMovies();
   movies.forEach(async movie => {
-    prepAffichage(movie.id);
+    preDisplay(movie.id);
   });
 }
 
-// Affichage des films favoris
-view.btnAffichageFav.addEventListener('click', () => {
-  view.divFilms.innerHTML = '';
-  console.log(listeFavoris.getList());
-  listeFavoris.getList().forEach(async favoris => {
-    prepAffichage(favoris);
+// Display the favorites movies
+view.btnDisplayFavorite.addEventListener('click', () => {
+  view.moviesDiv.innerHTML = '';
+  listFavorites.getList().forEach(async favorite => {
+    preDisplay(favorite);
   });
 });
 
-// Fonction pour préparer l'appel à l'affichage des films
-async function prepAffichage(movie) {
-  const fullMovie = await apiMovie.recupFilm(movie);
-  const actors = await apiMovie.recupActeurs(movie);
-  view.afficheFilm(fullMovie, actors, listeFavoris);
+/**
+ * Recover the movie's information to display it
+ * @param {*} movie 
+ */
+async function preDisplay(movie) {
+  const fullMovie = await apiMovie.getMovie(movie); // movie's general information
+  const actors = await apiMovie.getActors(movie); // movie's cast
+  view.displayMovie(fullMovie, actors, listFavorites); // call the displaying function
 }

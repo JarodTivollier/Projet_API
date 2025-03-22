@@ -1,11 +1,16 @@
 /**
- * Objet constant représentant la vue.
+ * Constant objet for the view.
  */
 export const view = {
-    // Divisions des films
-    divFilms: document.getElementById('films'),
-    // Boutons d'affichage des favoris
-    btnAffichageFav: document.getElementById('btnAfficheFavoris'),
+    /* ----------- Main Page ---------- */
+    // Division for the movies
+    moviesDiv: document.getElementById('movies'),
+    // Buttons to add/remove favorites
+    btnFavorite: document.getElementsByName('favorite'),
+    // Button to display the favorites
+    btnDisplayFavorite: document.getElementById('btnDisplayFavorite'),
+
+    /* ----------- Search Page ---------- */
     // Menu déroulant des genres
     listGenres:  document.getElementById('genres'),
     // Keywords
@@ -16,103 +21,102 @@ export const view = {
     dateMax: document.getElementById('dateMax'),
  
     recherche: document.getElementById('btn-submit'),
-    // Boutons des favoris
-    favoris: document.getElementsByName('favoris'),
-
-    // Fonction d'affichage
+    
     /**
-     * Afficher un film
-     * @param {} movie 
+     * Display a movie
+     * @param {*} movie 
+     * @param {*} actors 
+     * @param {*} listFavorites 
      */
-    async afficheFilm(movie, actors, listeFavoris) {
+    async displayMovie(movie, actors, listFavorites) {
       if (movie.poster_path != null) {
-        // --- Affiche du film
-        let afficheFilm = document.createElement('img');
-        afficheFilm.src = 'https://media.themoviedb.org/t/p/w220_and_h330_face' + movie.poster_path;
+        // ------ Movie Poster
+        let moviePoster = document.createElement('img');
+        moviePoster.src = 'https://media.themoviedb.org/t/p/w220_and_h330_face' + movie.poster_path;
       
-        // --- Info
-        let info = document.createElement('div');
-        info.className = 'infoFilm';
-        // Titre
-        let titre = document.createElement('h2');
-        titre.textContent = movie.title;
-        info.append(titre);
-        // Sous-titre
+        // ------ Information
+        let movieInfo = document.createElement('div');
+        movieInfo.className = 'movieInfo';
+        // --- Title
+        let movieInfoTitle = document.createElement('h2');
+        movieInfoTitle.textContent = movie.title;
+        movieInfo.append(movieInfoTitle);
+        // --- Subtitle
         if (movie.tagline != "") {
-          let sousTitre = document.createElement('p');
-          sousTitre.className = "sousTitre";
-          sousTitre.textContent = movie.tagline;
-          info.append(sousTitre);
+          let movieInfoSubTitle = document.createElement('p');
+          movieInfoSubTitle.className = "subTitle";
+          movieInfoSubTitle.textContent = movie.tagline;
+          movieInfo.append(movieInfoSubTitle);
         }
-        // Date
-        let date = document.createElement('p');
-        date.textContent = movie.release_date;
-        info.append(date);
-        // Genre
-        let genre = document.createElement('p');
-        let txtGenre = "";
+        // --- Date
+        let movieInfoDate = document.createElement('p');
+        movieInfoDate.textContent = movie.release_date;
+        movieInfo.append(movieInfoDate);
+        // --- Kind
+        let movieInfoKind = document.createElement('p');
+        let txtMovieInfoKind = "";
         for (let i = 0; i < movie.genres.length; i++) {
             if (i == 0) {
-              txtGenre += movie.genres[i].name;
+              txtMovieInfoKind += movie.genres[i].name;
             } else {
-              txtGenre += ", " + movie.genres[i].name;
+              txtMovieInfoKind += ", " + movie.genres[i].name;
             } 
         }
-        genre.textContent = txtGenre;
-        info.append(genre);
-        // Durée
-        let duree = document.createElement('p');
-        let heures = Math.floor(movie.runtime / 60);
+        movieInfoKind.textContent = txtMovieInfoKind;
+        movieInfo.append(movieInfoKind);
+        // --- Runtime
+        let movieInfoRuntime = document.createElement('p');
+        let hours = Math.floor(movie.runtime / 60);
         let minutes = movie.runtime % 60;
-        duree.textContent = heures + "h" + minutes;
-        info.append(duree);
-        // Acteurs (les 3 premiers)
-        let acteurs = document.createElement('p');
-        let txtActeurs = "";
+        movieInfoRuntime.textContent = hours + "h" + minutes;
+        movieInfo.append(movieInfoRuntime);
+        // --- Actors (the first three ones)
+        let movieInfoActors = document.createElement('p');
+        let txtMovieInfoActors = "";
         let i = 0
         while (i < actors.length && i < 3) {
             if (i == 0) {
-              txtActeurs += "With " + actors[i].name;
+              txtMovieInfoActors += "With " + actors[i].name;
             } else {
-              txtActeurs += ", " + actors[i].name;
+              txtMovieInfoActors += ", " + actors[i].name;
             } 
             i++;
         }
         if (actors.length > 3) {
-          txtActeurs += ", and more";
+          txtMovieInfoActors += ", and more";
         }
-        acteurs.textContent = txtActeurs;
-        info.append(acteurs);
+        movieInfoActors.textContent = txtMovieInfoActors;
+        movieInfo.append(movieInfoActors);
 
-        // --- Favoris
-        let favoris = document.createElement('button');
-        favoris.className = 'favoris';
-        favoris.name = 'favoris';
-        let imgCoeur = document.createElement('img');
-        if (listeFavoris.isInList(movie.id)) {
-          imgCoeur.src = 'css/images/coeur-rouge.png';
+        // ------ Favorite Button
+        let movieFavorite = document.createElement('button');
+        movieFavorite.className = 'favorite';
+        movieFavorite.name = 'favorite';
+        let movieFavoriteHeart = document.createElement('img');
+        if (listFavorites.isInList(movie.id)) {
+          movieFavoriteHeart.src = 'css/images/red-heart.png';
         } else {
-          imgCoeur.src = 'css/images/coeur-noir.png';
+          movieFavoriteHeart.src = 'css/images/black-heart.png';
         }
-        favoris.append(imgCoeur);
-        favoris.addEventListener('click', () => {
-          if (favoris.firstElementChild.src.includes('coeur-noir.png')) {
-            listeFavoris.add(movie.id);
-            favoris.firstElementChild.src = 'css/images/coeur-rouge.png';
+        movieFavorite.append(movieFavoriteHeart);
+        movieFavorite.addEventListener('click', () => {
+          if (movieFavorite.firstElementChild.src.includes('black-heart.png')) {
+            listFavorites.add(movie.id);
+            movieFavorite.firstElementChild.src = 'css/images/red-heart.png';
           } else {
-            listeFavoris.remove(movie.id);
-            favoris.firstElementChild.src = 'css/images/coeur-noir.png';
+            listFavorites.remove(movie.id);
+            movieFavorite.firstElementChild.src = 'css/images/black-heart.png';
           }
         });
         
-        // --- Div du film
-        let newDiv = document.createElement('div');
-        newDiv.className = 'film';
-        newDiv.append(afficheFilm);
-        newDiv.append(info);
-        newDiv.append(favoris);
+        // ------ Movie Division
+        let newMovie = document.createElement('div');
+        newMovie.className = 'movie';
+        newMovie.append(moviePoster);
+        newMovie.append(movieInfo);
+        newMovie.append(movieFavorite);
       
-        this.divFilms.append(newDiv);
+        this.moviesDiv.append(newMovie);
       }
     }
   }
