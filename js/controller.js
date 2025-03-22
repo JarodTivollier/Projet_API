@@ -1,17 +1,27 @@
 import { view } from './view.js';
 import { Favorite } from './favorite.js';
 import { APIMovie } from './movie.js';
+import { SearchResult } from './search-result.js';
 
 
-let listFavorites = new Favorite;
-let apiMovie = new APIMovie;
+const listFavorites = new Favorite;
+const apiMovie = new APIMovie;
+const searchResult = new SearchResult;
 
 // Search what is going to be displayed
-if (localStorage.getItem("searchMoviesId")) {
+if (searchResult.getList().length > 0) {
+  // Change the subtitle of the page
+  view.addIndicator('Here are the result for your research')
   // Display the result of the search
-  console.log('je cherche...');
-  displayDefault();
+  searchResult.getList().forEach(movie => {
+    preDisplay(movie);
+  });
+  // Erase the list
+  searchResult.resetList();
+  searchResult.save();
 } else {
+  // Change the subtitle of the page
+  view.addIndicator('Here are random movies, maybe because your research didn\'t have any matches')
   // Display the default movies
   displayDefault();
 }

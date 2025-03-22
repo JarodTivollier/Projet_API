@@ -11,6 +11,15 @@ body {
     align-items: center;
 }
 
+#header h1 {
+    margin-bottom: 0%;
+}
+
+#header p {
+    margin-top: 0%;
+    margin-bottom: 5vh;
+}
+
 h1 {
     font-size: 7vh;
 }

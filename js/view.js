@@ -3,6 +3,8 @@
  */
 export const view = {
     /* ----------- Main Page ---------- */
+    // Header of the page
+    headerIndex: document.getElementById('header'),
     // Division for the movies
     moviesDiv: document.getElementById('movies'),
     // Buttons to add/remove favorites
@@ -13,16 +15,42 @@ export const view = {
     btnRandomSearch: document.getElementById('btnRandomSearch'),
 
     /* ----------- Search Page ---------- */
-    // Menu déroulant des genres
-    listGenres:  document.getElementById('genres'),
-    // Keywords
-    keywords: document.getElementById('keywords'),
-    // Date Min
+    // Menus déroulant des genres
+    firstListKinds:  document.getElementById('firstKind'),
+    secondListKinds: document.getElementById('secondKind'),
+    // Release Date
     dateMin: document.getElementById('dateMin'),
-    // Date Max
     dateMax: document.getElementById('dateMax'),
- 
-    recherche: document.getElementById('btn-submit'),
+    // Runtime 
+    btnRadioRuntime: document.getElementsByName('runtime'),
+    // Keywords
+    firstKeyword: document.getElementById('firstKeyword'),
+    secondKeyword: document.getElementById('secondKeyword'),
+    // Serach Button
+    recherche: document.getElementById('btnSearch'),
+
+    async displayKinds(kinds) {
+      for(let i = 0; i < kinds.length; i++){
+        let kind = document.createElement('option');
+        kind.value = kinds[i].id;
+        kind.text = kinds[i].name;
+        this.firstListKinds.append(kind);
+        let kind2 = document.createElement('option');
+        kind2.value = kinds[i].id;
+        kind2.text = kinds[i].name;
+        this.secondListKinds.append(kind2);
+      }
+    },
+
+    /**
+     * Add a subtitle according to the context (search result, default research)
+     * @param {*} text 
+     */
+    async addIndicator(text) {
+      let indicator = document.createElement('p');
+      indicator.textContent = text;
+      this.headerIndex.append(indicator);
+    },
     
     /**
      * Display a movie
