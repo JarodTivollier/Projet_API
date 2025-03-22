@@ -1,0 +1,29 @@
+{
+  "name": "projet_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha -r ts-node/register"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JarodTivollier/Projet_API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/JarodTivollier/Projet_API/issues"
+  },
+  "homepage": "https://github.com/JarodTivollier/Projet_API#readme",
+  "devDependencies": {
+    "mocha": "^11.1.0",
+    "node-localstorage": "^3.0.5",
+    "ts-node": "^10.9.2"
+  }
+}

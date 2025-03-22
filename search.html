@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Titre de la page</title>
+</head>
+<body>
+    <h1> What are we watching tonight ? </h1>
+    <form>
+        <label for="genres">Genres:</label>
+        <select id="genres">
+          <!-- TODO: affichage des genres -->
+        </select>
+        <label for="date">Release date:</label>
+        <input id="dateMin" placeholder="2025-01-01">
+        <input id="dateMax" placeholder="2025-12-31">
+        <label for="duree">Runtime:</label>
+        <div id="duree">
+          <label>
+            <input type="radio" name="runtime" value="1-1.5" id="runtime-1" checked>
+            1h - 1h30
+          </label><br>
+          <label>
+            <input type="radio" name="runtime" value="1.5-2" id="runtime-2">
+            1h30 - 2h
+          </label><br>
+          <label>
+            <input type="radio" name="runtime" value="2-2.5" id="runtime-3">
+            2h - 2h30
+          </label><br>
+          <label>
+            <input type="radio" name="runtime" value="2.5-3" id="runtime-4">
+            2h30 - 3h
+          </label><br>
+          <label>
+            <input type="radio" name="runtime" value=">3" id="runtime-5">
+            Plus de 3h
+          </label><br>
+        </div>
+        <label for="keywords">keywords:</label>
+        <input type="text" id="keywords" placeholder="séparé les mots par des virgules">
+        <button type="submit" id="btn-submit"> Rechercher </button>
+    </form>
+</body>
+  <script type="module" src="js/recherche.js"></script>
+</html>

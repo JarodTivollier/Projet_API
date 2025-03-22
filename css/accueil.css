@@ -14,7 +14,7 @@ h1 {
     font-size: 7vh;
 }
 
-button {
+button, a {
     width: 20vh;
     height: 7vh;
     font-size: 3vh;
@@ -24,6 +24,12 @@ button {
     border: transparent;
     border-radius: 2vh;
     cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    text-align: center;
+    align-content: center;
 }
 
 #filmsEtListe {
