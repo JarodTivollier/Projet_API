@@ -1,48 +1,82 @@
 <!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="utf-8">
-  <title>Titre de la page</title>
-  <link rel="stylesheet" href="css/search.css">
-  <link rel="stylesheet" href="css/global.css">
-</head>
-<body>
-    <h1> What are we watching tonight ? </h1>
-    <form>
-        <label for="genres">Genres:</label>
-        <select id="genres">
-          <!-- TODO: affichage des genres -->
-        </select>
-        <label for="date">Release date:</label>
-        <input id="dateMin" placeholder="2025-01-01">
-        <input id="dateMax" placeholder="2025-12-31">
-        <label for="duree">Runtime:</label>
-        <div id="duree">
-          <label>
-            <input type="radio" name="runtime" value="1-1.5" id="runtime-1" checked>
-            1h - 1h30
-          </label><br>
-          <label>
-            <input type="radio" name="runtime" value="1.5-2" id="runtime-2">
-            1h30 - 2h
-          </label><br>
-          <label>
-            <input type="radio" name="runtime" value="2-2.5" id="runtime-3">
-            2h - 2h30
-          </label><br>
-          <label>
-            <input type="radio" name="runtime" value="2.5-3" id="runtime-4">
-            2h30 - 3h
-          </label><br>
-          <label>
-            <input type="radio" name="runtime" value=">3" id="runtime-5">
-            Plus de 3h
-          </label><br>
+  <head>
+    <meta charset="utf-8">
+    <title>Titre de la page</title>
+    <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="icon" href="css/images/clap.png">
+  </head>
+  <body>
+    <div id="header">
+      <h1>What are we watching tonight ?</h1>  
+      <p>Fill the form to search movies</p>
+    </div>
+    <div id="search">
+      <form>
+        <div id="rightForm">
+          <fieldset id="kind">
+            <legend>
+              <img src="css/images/movieKind.png" alt="movieKind">
+              Kinds
+            </legend>
+            <p>First kind:</p>
+            <select id="genres"></select>
+            <p>Second kind:</p>
+            <select id="genres2"></select>
+          </fieldset>
+          <fieldset id="date">
+            <legend>
+              <img src="css/images/movieDate.png" alt="movieDate">
+              Release Date
+            </legend>
+            <label for="dateMin">Minimum:</label>
+            <input id="dateMin" placeholder="2025-01-01">
+            <label for="dateMax">Maximum:</label>
+            <input id="dateMax" placeholder="2025-12-31">
+          </fieldset>
         </div>
-        <label for="keywords">keywords:</label>
-        <input type="text" id="keywords" placeholder="séparé les mots par des virgules">
-        <button type="submit" id="btn-submit"> Rechercher </button>
-    </form>
-</body>
+        <div id="leftForm">
+          <fieldset id="runtime">
+            <legend>
+              <img src="css/images/movieRuntime.png" alt="movieRuntime">
+              Runtime
+            </legend>
+            <label>
+              <input type="radio" name="runtime" value="1-1.5" id="runtime-1" checked>
+              Between 1h and 1h30
+            </label><br>
+            <label>
+              <input type="radio" name="runtime" value="1.5-2" id="runtime-2">
+              Between 1h30 and 2h
+            </label><br>
+            <label>
+              <input type="radio" name="runtime" value="2-2.5" id="runtime-3">
+              Between 2h and 2h30
+            </label><br>
+            <label>
+              <input type="radio" name="runtime" value="2.5-3" id="runtime-4">
+              Between 2h30 and 3h
+            </label><br>
+            <label>
+              <input type="radio" name="runtime" value=">3" id="runtime-5">
+              More than 3h
+            </label><br>
+          </fieldset>
+          <fieldset id="keywords">
+            <legend>
+              <img src="css/images/movieKeyword.png" alt="movieKeyword">
+              Keywords
+            </legend>
+            <label for="keywords">First keyword:</label>
+            <input type="text" id="keywords" placeholder="ex: fairy">
+            <label for="keywords2">Second keyword:</label>
+            <input type="text" id="keywords2" placeholder="ex: fairy">
+          </fieldset>
+        </div>
+      </form>
+      <button type="button" id="btn-submit">Search</button>
+    </div>
+  </body>
   <script type="module" src="js/recherche.js"></script>
 </html>
