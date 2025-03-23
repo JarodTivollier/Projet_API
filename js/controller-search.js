@@ -13,8 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     view.recherche.addEventListener('click', async () => {
         console.log('bonjour');
         await search();
-        window.history.back();
-        window.location.reload();
+        window.history.go(-1);
     });
 });
  
