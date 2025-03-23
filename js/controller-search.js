@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     view.recherche.addEventListener('click', async () => {
         console.log('bonjour');
         await search();
-        window.location.href = '../index.html';
+        window.location.href = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port;
     });
 });
  

@@ -15,7 +15,7 @@ export const view = {
     btnRandomSearch: document.getElementById('btnRandomSearch'),
 
     /* ----------- Search Page ---------- */
-    // Menus déroulant des genres
+    // Kinds
     firstListKinds:  document.getElementById('firstKind'),
     secondListKinds: document.getElementById('secondKind'),
     // Release Date
