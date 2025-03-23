@@ -13,7 +13,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     view.recherche.addEventListener('click', async () => {
         console.log('bonjour');
         await search();
-        window.history.go(-1);
+        const previousPage = document.referrer;
+        window.location.href = previousPage;
+        //window.history.go(-1);
     });
 });
  
