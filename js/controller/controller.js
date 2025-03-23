@@ -1,7 +1,7 @@
-import { view } from './view.js';
-import { Favorite } from './favorite.js';
-import { APIMovie } from './movie.js';
-import { SearchResult } from './search-result.js';
+import { view } from '../view/view.js';
+import { Favorite } from '../model/favorite.js';
+import { APIMovie } from '../model/movie.js';
+import { SearchResult } from '../model/search-result.js';
 
 
 const listFavorites = new Favorite;

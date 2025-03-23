@@ -1,6 +1,6 @@
-import { view } from './view.js';
-import { APIMovie } from './movie.js';
-import { SearchResult } from './search-result.js';
+import { view } from '../view/view.js';
+import { APIMovie } from '../model/movie.js';
+import { SearchResult } from '../model/search-result.js';
 
 const apiMovie = new APIMovie; 
 const searchResult = new SearchResult;
