@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.log('bonjour');
         await search();
         window.history.back();
+        window.location.reload();
     });
 });
  
