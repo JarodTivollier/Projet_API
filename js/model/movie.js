@@ -43,7 +43,8 @@ export class APIMovie {
      * @returns a list of movies
      */
     async getRandomMovies() {
-      let resObj = await fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=EN6us&page=1&sort_by=popularity.desc&with_runtime.gte=60', options);
+      const randomPage = Math.floor(Math.random() * (500 + 1)); 
+      let resObj = await fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=EN6us&page='+randomPage+'&sort_by=popularity.desc&with_runtime.gte=60', options);
       if (resObj.ok) {
           // If the result is OK (Status HTTP between 200 and 299)
           const resJSON = await resObj.json();
