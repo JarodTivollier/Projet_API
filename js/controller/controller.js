@@ -28,7 +28,7 @@ if (searchResult.getList().length > 0) {
 
 // Button random search
 view.btnRandomSearch.addEventListener('click', () => {
-  displayDefault();
+  displayRandom();
 })
 
 // Button display favorites
@@ -45,6 +45,13 @@ view.btnDisplayFavorite.addEventListener('click', () => {
 async function displayDefault() {
   view.moviesDiv.innerHTML = '';
   const movies = await apiMovie.getMovies();
+  movies.forEach(async movie => {
+    preDisplay(movie.id);
+  });
+}
+async function displayRandom() {
+  view.moviesDiv.innerHTML = '';
+  const movies = await apiMovie.getRandomMovies();
   movies.forEach(async movie => {
     preDisplay(movie.id);
   });
