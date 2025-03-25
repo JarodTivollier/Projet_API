@@ -11,7 +11,7 @@ const searchResult = new SearchResult;
 // Search what is going to be displayed
 if (searchResult.getList().length > 0) {
   // Change the subtitle of the page
-  view.addIndicator('Here are the result for your research')
+  view.changeIndicator('Here are the result for your research');
   // Display the result of the search
   searchResult.getList().forEach(movie => {
     preDisplay(movie);
@@ -21,22 +21,28 @@ if (searchResult.getList().length > 0) {
   searchResult.save();
 } else {
   // Change the subtitle of the page
-  view.addIndicator('Here are random movies, maybe because your research didn\'t have any matches')
+  view.changeIndicator('Here are random movies, maybe because your research didn\'t have any matches');
   // Display the default movies
   displayDefault();
 }
 
 // Button random search
 view.btnRandomSearch.addEventListener('click', () => {
+  view.changeIndicator('Here are random movies');
   displayRandom();
 })
 
 // Button display favorites
 view.btnDisplayFavorite.addEventListener('click', () => {
   view.moviesDiv.innerHTML = '';
-  listFavorites.getList().forEach(async favorite => {
-    preDisplay(favorite);
-  });
+  if (listFavorites.getList().length == 0) {
+    view.changeIndicator('It seems that you don\'t have any favorites yet');
+  } else {
+    view.changeIndicator('Here are your favorite movies');
+    listFavorites.getList().forEach(async favorite => {
+      preDisplay(favorite);
+    });
+  }
 });
 
 /**
