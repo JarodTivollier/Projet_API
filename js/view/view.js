@@ -15,34 +15,6 @@ export const view = {
     // Button to display the random search
     btnRandomSearch: document.getElementById('btnRandomSearch'),
 
-    /* ----------- Search Page ---------- */
-    // Kinds
-    firstListKinds:  document.getElementById('firstKind'),
-    secondListKinds: document.getElementById('secondKind'),
-    // Release Date
-    dateMin: document.getElementById('dateMin'),
-    dateMax: document.getElementById('dateMax'),
-    // Runtime 
-    btnRadioRuntime: document.getElementsByName('runtime'),
-    // Keywords
-    firstKeyword: document.getElementById('firstKeyword'),
-    secondKeyword: document.getElementById('secondKeyword'),
-    // Serach Button
-    recherche: document.getElementById('btnSearch'),
-
-    async displayKinds(kinds) {
-      for(let i = 0; i < kinds.length; i++){
-        let kind = document.createElement('option');
-        kind.value = kinds[i].id;
-        kind.text = kinds[i].name;
-        this.firstListKinds.append(kind);
-        let kind2 = document.createElement('option');
-        kind2.value = kinds[i].id;
-        kind2.text = kinds[i].name;
-        this.secondListKinds.append(kind2);
-      }
-    },
-
     /**
      * Add a subtitle according to the context (search result, default research)
      * @param {*} text 
