@@ -1,5 +1,7 @@
 import assert from 'assert';
 import { Favoris } from '../js/favoris.js';
+
+// addons pour simuler le LocalStorage des navigateur web pour les tests
 import { LocalStorage } from 'node-localstorage';
 
 // Créez une instance de LocalStorage pour les tests
