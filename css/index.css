@@ -5,6 +5,11 @@
     gap: 5.5vh;
 }
 
+#credit {
+    background-color: transparent;
+    text-decoration: underline;
+}
+
 /* ------ Lists ------ */
 #lists {
     display: flex;

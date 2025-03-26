@@ -5,6 +5,7 @@ export const view = {
     /* ----------- Main Page ---------- */
     // Header of the page
     headerIndex: document.getElementById('header'),
+    indicator: document.getElementById('indicator'),
     // Division for the movies
     moviesDiv: document.getElementById('movies'),
     // Buttons to add/remove favorites
@@ -46,10 +47,8 @@ export const view = {
      * Add a subtitle according to the context (search result, default research)
      * @param {*} text 
      */
-    async addIndicator(text) {
-      let indicator = document.createElement('p');
-      indicator.textContent = text;
-      this.headerIndex.append(indicator);
+    async changeIndicator(text) {
+      this.indicator.textContent = text;
     },
     
     /**
